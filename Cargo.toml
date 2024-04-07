@@ -6,16 +6,17 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-actix = "0.13.3"
-actix-web = { version = "4.5.1", default-features = false, features = ["openssl", "compress-brotli", "compress-gzip"] }
+actix.workspace = true
+actix-web = { workspace = true, default-features = false, features = ["openssl", "compress-brotli", "compress-gzip", "macros"] }
 actix-http = { workspace = true, default-features = false, features = ["openssl", "compress-brotli", "compress-gzip"] }
-actix-rt = "2.9.0"
-actix-web-actors = { version = "4.3" }
+actix-rt.workspace = true
+actix-web-actors = { workspace = true }
 actix-service = "2.0.2"
 actix-identity = "0.6.0"
 actix-router = "0.5.2"
 actix-session = { version = "0.8", features = ["redis-rs-tls-session"] }
-openssl = { version = "0.10.62", features = ["vendored"] }
+dotenvy.workspace = true
+openssl = { workspace = true, features = ["vendored"] }
 
 # serde
 serde_json.workspace = true
@@ -32,12 +33,12 @@ tokio-stream.workspace = true
 tokio-util = { version = "0.7.10", features = ["io"] }
 futures-util = { workspace = true, features = ["std", "io"] }
 once_cell = "1.19.0"
-chrono = { version = "0.4.37", features = ["serde", "clock"], default-features = false }
+chrono = { workspace = true, features = ["serde", "clock"], default-features = false }
 derive_more = { version = "0.99" }
-argon2 = { version = "0.5", features = ["std"] }
-secrecy = { version = "0.8", features = ["serde"] }
+argon2.workspace = true
+secrecy = { workspace = true, features = ["serde"] }
 rand = { version = "0.8", features = ["std_rng"] }
-anyhow = "1.0.79"
+anyhow.workspace = true
 thiserror = "1.0.56"
 reqwest = { workspace = true, features = ["json", "rustls-tls", "cookies"] }
 unicode-segmentation = "1.10"
@@ -45,11 +46,11 @@ lazy_static.workspace = true
 fancy-regex = "0.11.0"
 validator = "0.16.1"
 bytes = "1.5.0"
-rcgen = { version = "0.10.0", features = ["pem", "x509-parser"] }
+rcgen = { workspace = true, features = ["pem", "x509-parser"] }
 mime = "0.3.17"
 rust-s3 = { version = "0.33.0", default-features = false, features = ["tokio-rustls-tls", "with-tokio", "no-verify-ssl"] }
 redis = { workspace = true, features = ["json", "tokio-comp", "connection-manager"] }
-tracing = "0.1.40"
+tracing.workspace = true
 tracing-subscriber = { version = "0.3.18", features = ["registry", "env-filter", "ansi", "json"] }
 tracing-bunyan-formatter = "0.3.9"
 tracing-log = "0.1.4"
@@ -58,16 +59,16 @@ async-trait.workspace = true
 prometheus-client.workspace = true
 itertools = "0.11"
 uuid = "1.6.1"
-tokio-tungstenite = { version = "0.20.1", features = ["native-tls"] }
+tokio-tungstenite = { workspace = true, features = ["native-tls"] }
 prost = "0.12.3"
-dotenvy = "0.15.7"
+casbin.workspace = true
 url = "2.5.0"
 brotli = "3.4.0"
 dashmap.workspace = true
 async-stream.workspace = true
 futures.workspace = true
-semver = "1.0.22"
 governor = { version = "0.6.3" }
+semver.workspace = true
 
 # collab
 collab = { version = "0.1.0" }
@@ -80,8 +81,8 @@ snowflake = { path = "libs/snowflake" }
 database.workspace = true
 appflowy-ai = { path = "libs/appflowy-ai" }
 database-entity.workspace = true
-gotrue = { path = "libs/gotrue" }
-gotrue-entity = { path = "libs/gotrue-entity" }
+gotrue.workspace = true
+gotrue-entity.workspace = true
 infra = { path = "libs/infra" }
 access-control.workspace = true
 app-error = { workspace = true, features = ["sqlx_error", "actix_web_error", "tokio_error"] }
@@ -90,7 +91,7 @@ workspace-template = { workspace = true }
 collab-rt-entity.workspace = true
 collab-stream.workspace = true
 collab-rt.workspace = true
-serde_repr = "0.1.18"
+serde_repr.workspace = true
 
 
 [dev-dependencies]
@@ -149,23 +150,34 @@ members = [
 ]
 
 [workspace.dependencies]
+actix = "0.13.3"
+actix-http = { version = "3.5.1", default-features = false }
+actix-web = { version = "4.4.1", default-features = false }
+actix-rt = "2.9.0"
+actix-web-actors = { version = "4.2.0" }
+argon2 = { version = "0.5", features = ["std"] }
+auth = { path = "libs/auth" }
+casbin = "2.2.0"
+chrono = { version = "0.4.37", features = ["serde", "clock"], default-features = false }
 collab-rt-entity = { path = "libs/collab-rt-entity" }
 collab-rt-protocol = { path = "libs/collab-rt-protocol" }
 database = { path = "libs/database" }
 database-entity = { path = "libs/database-entity" }
+dotenvy = "0.15.7"
 shared-entity = { path = "libs/shared-entity" }
 access-control = { path = "libs/access-control" }
 app-error = { path = "libs/app-error" }
 async-trait = "0.1.77"
 prometheus-client = "0.22.0"
 collab-stream = { path = "libs/collab-stream" }
-serde_json = "1.0.111"
 serde = { version = "1.0.195", features = ["derive"] }
+serde_json = "1.0.111"
+serde_repr = "0.1.18"
 bytes = "1.5.0"
 workspace-template = { path = "libs/workspace-template" }
 uuid = { version = "1.6.1", features = ["v4"] }
-anyhow = "1.0.79"
-actix-http = { version = "3.6.0", default-features = false }
+anyhow = "1.0.81"
+openssl = { version = "0.10.63", features = ["vendored"] }
 tokio = { version = "1.36.0", features = ["sync"] }
 tokio-stream = "0.1.14"
 futures-util = "0.3.30"
@@ -178,12 +190,17 @@ collab-document = { version = "0.1.0" }
 collab-entity = { version = "0.1.0" }
 tracing = { version = "0.1.40" }
 gotrue = { path = "libs/gotrue" }
+gotrue-entity = { path = "libs/gotrue-entity" }
+rcgen = { version = "0.10.0", features = ["pem", "x509-parser"] }
 redis = "0.25.2"
+secrecy = { version = "0.8", features = ["serde"] }
+semver = "1.0.22"
 sqlx = { version = "0.7.4", default-features = false }
 dashmap = "5.5.3"
 futures = "0.3.30"
 async-stream = "0.3.5"
 reqwest = "0.11.27"
+tokio-tungstenite = { version = "0.20.1", features = ["native-tls"] }
 collab-rt = { path = "libs/collab-rt" }
 lazy_static = "1.4.0"
 

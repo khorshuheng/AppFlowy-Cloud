@@ -57,6 +57,7 @@ where
   type Result = ResponseFuture<anyhow::Result<(), RealtimeError>>;
 
   fn handle(&mut self, new_conn: Connect, _ctx: &mut Context<Self>) -> Self::Result {
+    info!("new connection from user: {}", new_conn.user);
     let conn_sink = RealtimeClientWebsocketSinkImpl(new_conn.socket);
     self.handle_new_connection(new_conn.user, conn_sink)
   }

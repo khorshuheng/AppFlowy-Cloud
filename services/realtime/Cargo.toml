@@ -6,3 +6,48 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+app-error = { workspace = true, features = ["sqlx_error", "actix_web_error", "tokio_error"] }
+actix.workspace = true
+actix-web = { workspace = true, default-features = false, features = ["openssl", "compress-brotli", "compress-gzip", "macros"] }
+actix-http = { workspace = true, default-features = false, features = ["openssl", "compress-brotli", "compress-gzip"] }
+actix-rt.workspace = true
+actix-web-actors = { workspace = true }
+anyhow.workspace = true
+async-trait.workspace = true
+bytes.workspace = true
+chrono = { workspace = true, features = ["serde", "clock"], default-features = false }
+collab-rt.workspace = true
+collab-rt-entity.workspace = true
+dashmap.workspace = true
+database.workspace = true
+dotenvy.workspace = true
+futures-util = "0.3.30"
+governor = { version = "0.6.3" }
+gotrue.workspace = true
+gotrue-entity.workspace = true
+# openssl = { workspace = true, features = ["vendored"] }
+# rcgen = { workspace = true, features = ["pem", "x509-parser"] }
+secrecy.workspace = true
+semver.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+serde_repr.workspace = true
+shared-entity = { workspace = true, features = ["cloud"] }
+sqlx = { workspace = true, default-features = false, features = ["runtime-tokio-rustls", "macros", "postgres", "uuid", "chrono", "migrate"] }
+thiserror = "1.0.58"
+tokio = { workspace = true, features = [
+    "macros",
+    "rt-multi-thread",
+    "sync",
+    "fs",
+    "time",
+] }
+# tokio-stream.workspace = true
+tokio-tungstenite.workspace = true
+tracing.workspace = true
+uuid.workspace = true
+env_logger = "0.11.3"
+
+[dev-dependencies]
+client-api = { path = "../../libs/client-api" , features = ["test_util"]}
+client-api-test-util = { path = "../../libs/client-api-test-util" }

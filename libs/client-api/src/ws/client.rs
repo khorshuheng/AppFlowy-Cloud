@@ -130,7 +130,6 @@ impl WSClient {
       Arc::downgrade(&self.current_conn_info),
     )
     .await;
-
     // 3. handle websocket error when connecting or sending message
     if let Err(err) = &conn_result {
       match err {

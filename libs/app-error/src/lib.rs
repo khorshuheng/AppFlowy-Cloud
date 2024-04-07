@@ -307,6 +307,7 @@ impl actix_web::error::ResponseError for AppError {
   }
 
   fn error_response(&self) -> actix_web::HttpResponse {
+    let display = AppErrorSerde::from(self);
     actix_web::HttpResponse::Ok().json(AppErrorSerde::from(self))
   }
 }

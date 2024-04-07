@@ -118,7 +118,10 @@ impl Action for ConnectAction {
           info!("🟢websocket connect success");
           Ok(stream)
         },
-        Err(e) => Err(e.into()),
+        Err(e) => {
+          info!("🔴websocket connect error, retrying: {:?}", e);
+          Err(e.into())
+        },
       }
     })
   }
