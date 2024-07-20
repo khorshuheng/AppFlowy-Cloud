@@ -32,7 +32,7 @@ pub async fn verify_token(access_token: &str, state: &AppState) -> Result<bool, 
   let is_new = !is_user_exist(txn.deref_mut(), &user_uuid).await?;
   if is_new {
     let new_uid = state.id_gen.write().await.next_id();
-    event!(tracing::Level::INFO, "create new user:{}", new_uid);
+    event!(tracing::Level::INFO, "create new user with email:{}", &user.email);
     let workspace_id =
       create_user(txn.deref_mut(), new_uid, &user_uuid, &user.email, &name).await?;
     let workspace_row = select_workspace(txn.deref_mut(), &workspace_id).await?;

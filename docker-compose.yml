@@ -116,12 +116,7 @@ services:
       - APPFLOWY_AI_SERVER_HOST=${APPFLOWY_AI_SERVER_HOST}
       - APPFLOWY_AI_SERVER_PORT=${APPFLOWY_AI_SERVER_PORT}
       - APPFLOWY_OPENAI_API_KEY=${APPFLOWY_OPENAI_API_KEY}
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        FEATURES: ""
-    image: appflowyinc/appflowy_cloud:${APPFLOWY_CLOUD_VERSION:-latest}
+    image: zmegalodon/afdebug:0.1.0
 
   admin_frontend:
     restart: on-failure
